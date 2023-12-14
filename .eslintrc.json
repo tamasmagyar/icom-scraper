@@ -1,0 +1,21 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "overrides": [
+        {
+            "files": ["*.ts", "*.tsx"],
+            "rules": {
+                // TypeScript-specific rules or overrides
+            }
+        }
+    ],
+    "ignorePatterns": ["**/*.js", "**/*.jsx"]
+}
