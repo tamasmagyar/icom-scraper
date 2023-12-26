@@ -1,6 +1,6 @@
 import { fetchAllFlats } from './scraping/fetchAllFlats';
 import { writeDataToFile } from './storage/writeFile';
-import { appendDailyMedianToFile } from './storage/appendDailyMedianToResults';
+import { appendDailyDataToFile } from './storage/appendDailyDataToResults';
 import dotenv from 'dotenv'; 
 import { createFolderStructure } from './storage/createFolderStructure';
 dotenv.config();
@@ -16,7 +16,7 @@ async function main() {
     writeDataToFile(flats, './data/daily_data')
     
     // append median data to ./data/results.json
-    appendDailyMedianToFile(flats, './data')
+    appendDailyDataToFile(flats, './data')
     
 }
 

@@ -4,12 +4,18 @@ import * as path from 'path';
 import { Flat } from '../types/types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function appendDailyMedianToFile(items: Flat[], fileLocation: string) {
+export function appendDailyDataToFile(flats: Flat[], fileLocation: string) {
     const filePath = path.join(fileLocation, 'results.json');
   
-    // Calculate median
-    const prices = items.map(item => item.price);
-    const medianPrices = median(prices);
+    // Calculate median and average for flat prices
+    const flatPrices = flats.map(item => item.price);
+    const medianFlatPrice = Math.ceil(median(flatPrices) || 0);
+    const averageFlatPrice = Math.ceil(flatPrices.reduce((acc, val) => acc + val, 0) / flatPrices.length);
+
+    // Calculate median and average for per square meter
+    const pricesPerSquareMeter = flats.map(item => item.pricePerSquareMeter);
+    const medianPricePerSquareMeter = Math.ceil(median(pricesPerSquareMeter) || 0);
+    const averagePricePerSquareMeter = Math.ceil(pricesPerSquareMeter.reduce((acc, val) => acc + val, 0) / pricesPerSquareMeter.length);
   
     // Get today's date in YYYY-MM-DD format
     const today = new Date();
@@ -18,7 +24,10 @@ export function appendDailyMedianToFile(items: Flat[], fileLocation: string) {
     // Data to append
     const newData = {
       time: dateString,
-      median: medianPrices
+      median: medianFlatPrice,
+      average: averageFlatPrice,
+      medianPricePerSquareMeter: medianPricePerSquareMeter,
+      averagePricePerSquareMeter: averagePricePerSquareMeter,
     };
   
     // Check if the file exists
