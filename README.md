@@ -14,7 +14,7 @@ create ``.env`` file with
 URL='your-flat-search-url-param'
 ```
 
-## Running
+## Running locally without docker
 
 Run ts
 ```
@@ -40,6 +40,12 @@ yarn start
 2. setup systemd to run `yarn server` (express server to serve json data to Grafana)
 
 
-# TODO & roadmap
+## Running with Docker
 
-1. Dockerize services
+```
+docker compose up
+```
+- Starts server to serve json data on port 3069
+- Runs scraping script every 24 hours
+- Stores scraped data locally under data/ folder
+
