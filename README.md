@@ -40,7 +40,7 @@ yarn start
 ### Scheduling job locally
 
 1. setup cron job to start `yarn start` command (scraper)
-2. setup systemd to run `yarn server:server` (express server to serve json data to Grafana)
+2. setup systemd to run `yarn start:server` (express server to serve json data to Grafana)
 
 
 ## Running with Docker
@@ -48,9 +48,9 @@ yarn start
 ```
 docker compose up
 ```
-- Starts server to serve json data on port 3069
+- Starts server to serve json data on port `3069`
 - Runs scraping script every 24 hours
-- Stores scraped data locally under data/ folder
+- Stores scraped data locally under `data/` folder
 
 
 # Displaying data
