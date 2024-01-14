@@ -5,3 +5,6 @@ data
 output*.html
 
 .env
+
+# test
+coverage/
