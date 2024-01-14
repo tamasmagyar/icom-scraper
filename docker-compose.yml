@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3069:3069"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+      - data:/data
+    restart: always
+
+  daily_task:
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+      - data:/data
+    entrypoint: /bin/sh -c "yarn start && sleep 86400"
+    restart: unless-stopped
+
+volumes:
+  data:
